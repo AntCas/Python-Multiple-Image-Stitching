@@ -6,6 +6,7 @@ import time
 
 class Stitch:
 	def __init__(self, args):
+		print "init Stitch"
 		self.path = args
 		fp = open(self.path, 'r')
 		filenames = [each.rstrip('\r\n') for each in  fp.readlines()]
@@ -17,6 +18,7 @@ class Stitch:
 		self.prepare_lists()
 
 	def prepare_lists(self):
+		print "prepare_lists"
 		print "Number of images : %d"%self.count
 		self.centerIdx = self.count/2 
 		print "Center index image : %d"%self.centerIdx
@@ -29,6 +31,7 @@ class Stitch:
 		print "Image lists prepared"
 
 	def leftshift(self):
+		print "leftshift"
 		# self.left_list = reversed(self.left_list)
 		a = self.left_list[0]
 		for b in self.left_list[1:]:
@@ -58,6 +61,7 @@ class Stitch:
 
 		
 	def rightshift(self):
+		print "rightshift"
 		for each in self.right_list:
 			H = self.matcher_obj.match(self.leftImage, each, 'right')
 			print "Homography :", H
@@ -66,7 +70,7 @@ class Stitch:
 			dsize = (int(txyz[0])+self.leftImage.shape[1], int(txyz[1])+self.leftImage.shape[0])
 			tmp = cv2.warpPerspective(each, H, dsize)
 			cv2.imshow("tp", tmp)
-			cv2.waitKey()
+			# cv2.waitKey()
 			# tmp[:self.leftImage.shape[0], :self.leftImage.shape[1]]=self.leftImage
 			tmp = self.mix_and_match(self.leftImage, tmp)
 			print "tmp shape",tmp.shape
@@ -76,17 +80,23 @@ class Stitch:
 
 
 
+	# This function iterates over every pixel between two images. But why?
 	def mix_and_match(self, leftImage, warpedImage):
+		print "mix_and_match"
 		i1y, i1x = leftImage.shape[:2]
 		i2y, i2x = warpedImage.shape[:2]
 		print leftImage[-1,-1]
 
-		t = time.time()
-		black_l = np.where(leftImage == np.array([0,0,0]))
-		black_wi = np.where(warpedImage == np.array([0,0,0]))
-		print time.time() - t
-		print black_l[-1]
+		#t = time.time()
+		#print "start calculating black_l/black_wi"
+		#black_l = np.where(leftImage == np.array([0,0,0]))
+		#print "black_l = %s" % str(black_l)
+		#black_wi = np.where(warpedImage == np.array([0,0,0]))
+		#print "black_wi = %s" % str(black_wi)
+		#print time.time() - t
+		#print black_l[-1]
 
+		print i1x, i1y
 		for i in range(0, i1x):
 			for j in range(0, i1y):
 				try:
@@ -117,15 +127,19 @@ class Stitch:
 
 
 	def trim_left(self):
+		print "trim_left"
 		pass
 
 	def showImage(self, string=None):
+		print "showImage"
 		if string == 'left':
 			cv2.imshow("left image", self.leftImage)
 			# cv2.imshow("left image", cv2.resize(self.leftImage, (400,400)))
 		elif string == "right":
 			cv2.imshow("right Image", self.rightImage)
+		print "waitkey"
 		cv2.waitKey()
+		print "/waitkey"
 
 
 if __name__ == '__main__':
@@ -140,7 +154,7 @@ if __name__ == '__main__':
 	# s.showImage('left')
 	s.rightshift()
 	print "done"
-	cv2.imwrite("test12.jpg", s.leftImage)
+	cv2.imwrite("rgbpano.jpg", s.leftImage)
 	print "image written"
 	cv2.destroyAllWindows()
 	

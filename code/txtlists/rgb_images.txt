@@ -1,0 +1,12 @@
+../images/rgb_images/auto_jobIG8E3212318_thermorama_0_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_01_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_02_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_03_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_04_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_05_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_06_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_07_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_08_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_09_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_10_embedded_crop.png
+../images/rgb_images/auto_jobIG8E3212318_thermorama_11_embedded_crop.png

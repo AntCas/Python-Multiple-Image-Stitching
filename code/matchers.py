@@ -3,6 +3,7 @@ import numpy as np
 
 class matchers:
 	def __init__(self):
+		print "init"
 		self.surf = cv2.xfeatures2d.SURF_create()
 		FLANN_INDEX_KDTREE = 0
 		index_params = dict(algorithm=0, trees=5)
@@ -10,6 +11,7 @@ class matchers:
 		self.flann = cv2.FlannBasedMatcher(index_params, search_params)
 
 	def match(self, i1, i2, direction=None):
+		print "match"
 		imageSet1 = self.getSURFFeatures(i1)
 		imageSet2 = self.getSURFFeatures(i2)
 		print "Direction : ", direction
@@ -39,6 +41,7 @@ class matchers:
 		return None
 
 	def getSURFFeatures(self, im):
+		print "getSURFFeatures"
 		gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 		kp, des = self.surf.detectAndCompute(gray, None)
 		return {'kp':kp, 'des':des}
